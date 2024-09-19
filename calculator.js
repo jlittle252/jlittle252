@@ -1,4 +1,4 @@
-//Jonathan Little
+
 //Comp 322
 //Prof. Hinton 
 //Calculator Java script 
@@ -27,7 +27,7 @@ while (true) { // while loop to continue to get inputs from user
     if (operator === null) break;
 
     let result;
-    switch (operator) {
+    switch (operator) { // move through each case until a match is found for operator
         case '+':
             result = x + y;
             break;
@@ -47,14 +47,14 @@ while (true) { // while loop to continue to get inputs from user
             alert("Invalid operator!");
             continue;
     }
-    const newRow = resultsTable.insertRow();
+    const newRow = resultsTable.insertRow();// values from her will be put into  results table
         newRow.insertCell(0).innerText = isNaN(x) ? "Invalid input" : x;
         newRow.insertCell(1).innerText = operator;
         newRow.insertCell(2).innerText = isNaN(y) ? "Invalid input" : y;
         newRow.insertCell(3).innerText = result;
 }
 
-    const newRow2 = summary.insertRow();
+    const newRow2 = summary.insertRow(); // values from her will be put into  summary table
     const sum = results.reduce((acc, val) => acc + val, 0);
         newRow2.insertCell(0).innerText = Math.max(results);
         newRow2.insertCell(1).innerText = Math.min(results);
