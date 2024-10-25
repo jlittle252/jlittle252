@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Information Collection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    form, button {
+      margin-top: 20px;
+    }
+    .contact-list {
+      margin-top: 20px;
+    }
+    .contact-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Contact Information Collection</h1>
+
+<form id="contactForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+  <label for="phn_number">Phone Number:</label>
+  <input type="text" id="phn_number" name="phn_number" required><br><br>
+  <button type="button" onclick="addContact()">Add Contact</button>
+</form>
+
+<h2>Contact List</h2>
+<ul id="contactList" class="contact-list"></ul>
+
+<button type="button" onclick="pickRandomContact()">Pick Random Contact</button>
+<p id="selectedContact"></p>
+
+<script>
+  const contacts = [];
+
+  function addContact() {
+    const name = document.getElementById('name').value;
+    const number = document.getElementById('phn_number').value;
+    contacts.push({ name, number });
+    document.getElementById('contactForm').reset();
+    displayContacts();
+  }
+
+  function displayContacts() {
+    const contactList = document.getElementById('contactList');
+    contactList.innerHTML = '';
+    contacts.forEach(contact => {
+      const li = document.createElement('li');
+      li.className = 'contact-item';
+      li.textContent = `${contact.name} - ${contact.number}`;
+      contactList.appendChild(li);
+    });
+  }
+
+  function pickRandomContact() {
+    if (contacts.length > 0) {
+      const randomIndex = Math.floor(Math.random() * contacts.length);
+      const selected = contacts[randomIndex];
+      document.getElementById('selectedContact').textContent = `Selected Contact: ${selected.name} - ${selected.number}`;
+    } else {
+      document.getElementById('selectedContact').textContent = 'No contacts to select from!';
+    }
+  }
+</script>
+
+</body>
+</html>
