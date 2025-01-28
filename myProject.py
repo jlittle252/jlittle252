@@ -1,6 +1,4 @@
-# Group 6
-# Prof Leflore
-# Comp 267
+
 # program to connect to allow instructor to view student grades and edit them, also to allow Student to view weighted average or total grades
 
 
