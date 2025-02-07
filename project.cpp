@@ -4,13 +4,8 @@
 #include <string>
 #include <cctype>
 #include <unordered_map>
-// Hi my name is Ethen
+
 // Token struct to hold the lexeme and its type
-//yooooooooo
-// TEST !!!! 
-// COMP 360
-// Can you see it
-// i can see
 struct Token {
     std::string lexeme;
     std::string type;
