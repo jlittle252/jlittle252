@@ -8,6 +8,7 @@
 // Token struct to hold the lexeme and its type
 //yooooooooo
 // TEST !!!! 
+// COMP 360
 struct Token {
     std::string lexeme;
     std::string type;
