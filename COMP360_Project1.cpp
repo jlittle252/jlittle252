@@ -21,7 +21,8 @@ int lexLen;
 int token;
 int nextToken;
 const int END_OF_FILE = EOF; // Using a named constant for EOF
-std::ifstream file("source_code.txt");
+std::string source;
+std::ifstream file;
 
 /* Character classes */
 #define LETTER 0
@@ -96,6 +97,9 @@ void ident();
 
 /* main driver */
 int main() {
+    std::cout << "Enter the filename: ";
+    std::cin >> source;
+    file.open(source);
     if (!file) {
         cout << "ERROR - cannot open file" << endl;
         return 1;
