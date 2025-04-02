@@ -12,7 +12,8 @@ class User {
         string lastName;
         string id;
         string address;
-    
+   
+
     public:
         // Function to get user details
         void enterDetails() {
@@ -36,35 +37,65 @@ class User {
             cout << "Address: " << address << endl;
         }
     };
-class UTA{
+
+class UTA {
+    private:
+    int totalPayUTA;
+
     protected:
     int labHours;
     int hourPay;
+    int researchHours;
+    int lectureHours;
 
     public:
-    
+    virtual void workDetails(){
+        cout << "Enter worked hours: ";
+        cin >> labHours;
+    }
 
+    void calculateMonthlyPay() {
+        totalPayUTA = (labHours * hourPay);
+        cout << "Total Monthly Pay: " << totalPayUTA << endl;
+    }
+
+    void calculateNineMonthsPay() {
+        int nineMonthsPay = totalPayUTA * 9;
+        cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
+    }
 };
-class MTA{
-    protected:
-    
+
+class MTA: public UTA{
+    private:
+    int totalPayMTA;
 
     public:
-    
 
-    virtual void workDetails(){}
+    void workDetails() override{
+        cout << "Enter worked hours: ";
+        cin >> labHours;
+        cout << "Enter lecture hours: ";
+        cin >> lectureHours;
+    }
 
 };
-class PHDTAR{
-    protected:
-    
+
+class PHDTAR: public UTA{
+    private:
+    int totalPayPhDTAR;
 
     public:
-    
-
-    virtual void workDetails(){}
+    void workDetails() override{
+        cout << "Enter worked hours: ";
+        cin >> labHours;
+        cout << "Enter lecture hours: ";
+        cin >> lectureHours;
+        cout << "Enter research hours: ";
+        cin >> researchHours;
+    }
 
 };
+
 void WelcomeMenu() {
     cout << "*************************************************" << endl;
     cout << "         Jianshe University          " << endl;
@@ -107,12 +138,6 @@ void PhdTarWelcome() {
     cout << "       X) Exit" << endl;
     cout << "****************************************" << endl;
 }
-
-
-
-
-
-
 
 
 int main() {
@@ -193,7 +218,3 @@ int main() {
     cout << "Exiting ..." << endl;
     return 0;
 }
-
-
-    
-            
