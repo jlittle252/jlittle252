@@ -6,6 +6,65 @@
 
 using namespace std;
 
+class User {
+    private:
+        string firstName;
+        string lastName;
+        string id;
+        string address;
+    
+    public:
+        // Function to get user details
+        void enterDetails() {
+            cin.ignore();
+            cout << "Enter First Name: ";
+            getline(cin, firstName);
+            cout << "Enter Last Name: ";
+            getline(cin, lastName);
+            cout << "Enter ID: ";
+            getline(cin, id);
+            cout << "Enter Address: ";
+            getline(cin, address);
+        }
+    
+        // Function to display user details
+        void displayDetails() const {
+            cout << "\nUser Information:\n";
+            cout << "First Name: " << firstName << endl;
+            cout << "Last Name: " << lastName << endl;
+            cout << "ID: " << id << endl;
+            cout << "Address: " << address << endl;
+        }
+    };
+class UTA{
+    protected:
+    int labHours;
+    int hourPay;
+
+    public:
+    
+
+};
+class MTA{
+    protected:
+    
+
+    public:
+    
+
+    virtual void workDetails(){}
+
+};
+class PHDTAR{
+    protected:
+    
+
+    public:
+    
+
+    virtual void workDetails(){}
+
+};
 void WelcomeMenu() {
     cout << "*************************************************" << endl;
     cout << "         Jianshe University          " << endl;
@@ -18,16 +77,6 @@ void WelcomeMenu() {
     cout << " X)  Exit" << endl;
     cout << "==================================================" << endl;
 }
-void PhdTarWelcome() {
-    cout << "****************************************" << endl;
-    cout << "         - PhDTAR  Menu - " << endl;
-    cout << "       A) New TAR Enter" << endl;
-    cout << "       B) Enter Worked Hours" << endl;
-    cout << "       C) View Months Payment" << endl;
-    cout << "       D) View  9 Months Payment" << endl;
-    cout << "       X) Exit" << endl;
-    cout << "****************************************" << endl;
-}
 void UtaWelcome() {
     cout << "****************************************" << endl;
     cout << "         - UTA Menu -        " << endl;
@@ -38,7 +87,6 @@ void UtaWelcome() {
     cout << "       X) Exit" << endl;
     cout << "****************************************" << endl;
 }
-
 void MtaWelcome() {
     cout << "****************************************" << endl;
     cout << "         - MTA Menu -        " << endl;
@@ -49,47 +97,28 @@ void MtaWelcome() {
     cout << "       X) Exit" << endl;
     cout << "****************************************" << endl;
 }
-
-
-
-void newToCSV() {
-    ofstream file("masterFile.csv", ios::app);
-    if (!file.is_open()) {
-        cerr << "Error opening file!" << endl;
-        return;
-    }
-    
-    string firstName, lastName, address, id;
-    cout << "Enter First Name: "; cin >> firstName;
-    cout << "Enter Last Name: "; cin >> lastName;
-    cout << "Enter Address: "; cin >> address;
-    cout << "Enter ID: "; cin >> id;
-    
-    file << firstName << "," << lastName << "," << address << "," << id << "\n";
-    file.close();
-    cout << "TA Added Successfully!" << endl;
+void PhdTarWelcome() {
+    cout << "****************************************" << endl;
+    cout << "         - PhDTAR  Menu - " << endl;
+    cout << "       A) New TAR Enter" << endl;
+    cout << "       B) Enter Worked Hours" << endl;
+    cout << "       C) View Months Payment" << endl;
+    cout << "       D) View  9 Months Payment" << endl;
+    cout << "       X) Exit" << endl;
+    cout << "****************************************" << endl;
 }
 
-void enterHours() {
-    ofstream file("masterFile.csv", ios::app);
-    if (!file.is_open()) {
-        cerr << "Error opening file!" << endl;
-        return;
-    }
-    
-    string hours;
-    double grade;
-    cout << "Enter Worked Hours: "; cin >> hours;
-    
-    
-    file << hours <<  "\n";
-    file.close();
-    cout << "Hours Recorded Successfully!" << endl;
-}
+
+
+
+
+
+
 
 int main() {
     char option;
-    do{
+    User uta1;
+    do {
         WelcomeMenu();
         cout << "Enter Main Menu Option: ";
         cin >> option;
@@ -97,21 +126,33 @@ int main() {
         
         if (option == 'U') {
             char subOption;
+            
             do {
                 UtaWelcome();
                 cout << "Enter UTA Menu Option: ";
-                cin >> option;
+                cin >> subOption;
                 subOption = toupper(subOption);
         
                 if (subOption == 'F') {
-                    enterHours();
+                    
+                    cout << "\n++++++Enter User Details++++++\n"<< endl;
+                    uta1.enterDetails();
+
+
                 } else if (subOption == 'G') {
-                    newToCSV();
-                } else if (subOption == 'H') {
-                    newToCSV();
-                } else if (subOption == 'I') {
-                    newToCSV();
-                } // D
+                    
+                } else if(subOption == 'H'){
+
+                } else if (subOption == 'I'){
+                    
+                    
+                    cout << "\nDisplaying User Details:\n";
+                    uta1.displayDetails();
+                    
+
+
+                }
+                
             } while (subOption != 'X');
         
         }//option 
@@ -121,22 +162,18 @@ int main() {
             do {
                 PhdTarWelcome();
                 cout << "Enter PhdTar Menu Option: ";
-                cin >> option;
+                cin >> subOption2;
                 subOption2 = toupper(subOption2);
                 
                 if (subOption2 == 'A') {
-                    enterHours();
-                } else if (subOption2 == 'B') {
-                    newToCSV();
-                } else if (subOption2 == 'C') {
-                    newToCSV();
-                } else if (subOption2 == 'D') {
-                    newToCSV();
-                } // D
+                    
+                } else if (subOption2 == 'B'||subOption2 == 'C'||subOption2 == 'D') {
+                    
+                } 
             } while (subOption2 != 'X');
         } 
         
-        else if (option == 'M'){
+        else if (option == 'M') {
             char subOption3;
             do {
                 MtaWelcome();
@@ -144,23 +181,19 @@ int main() {
                 cin >> subOption3;
                 subOption3 = toupper(subOption3);
 
-                if (subOption3 == 'J'){
-                    newToCSV();
-                } else if (subOption3 =='K'){
-                    newToCSV();
-                }else if (subOption3 =='L'){
-                    newToCSV();
-                }else if (subOption3 =='M'){
-                    newToCSV();
-                }//M
+                if (subOption3 == 'J'||subOption3 =='K'||subOption3 =='L'||subOption3 =='M'){
+                    
+                }
+
             } while (subOption3!= 'X');
-        }// else if
+        }
 
     } while (option != 'X');
     
     cout << "Exiting ..." << endl;
     return 0;
 }
+
 
     
             
