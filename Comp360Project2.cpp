@@ -145,8 +145,8 @@ class PHDTAR: public UTA{
             cout << "Enter research hours: ";
             cin >> researchHours;
         if (researchHours <= 7) {
-            cout << "Enter research hours: ";
-            cin >> researchHours;
+            researchHours = researchHours;
+
         }
         else {
             cout << "Research hours cannot exceed 7." << endl;
@@ -216,6 +216,10 @@ int main() {
     char option;
     User uta1;
     UTA uta2;
+    PHDTAR phd;
+    UTA* ptr1 = &phd;
+    UTA* ptr2 = &phd;
+     
     do {
         WelcomeMenu();
         cout << "Enter Main Menu Option: ";
@@ -237,9 +241,11 @@ int main() {
                     uta2.workDetails();
                     
                 } else if(subOption == 'H'){
+                    uta1.displayDetails();
                     uta2.calculateMonthlyPay();
 
                 } else if (subOption == 'I'){
+                    uta1.displayDetails();
                     uta2.calculateNineMonthsPay();
                     
                     
@@ -264,10 +270,15 @@ int main() {
                 if (subOption2 == 'A') {
                     cout << "\n++++++Enter User Details++++++\n"<< endl;
                     uta1.enterDetails();
+                    ptr1->workDetails();
                     
                 } else if (subOption2 == 'B'){ 
+                    uta1.displayDetails();
+                    ptr2->calculateMonthlyPay();
                 
                 } else if (subOption2 == 'C'){
+                    uta1.displayDetails();
+                    ptr2->calculateNineMonthsPay();
 
                 }
             } while (subOption2 != 'X');
