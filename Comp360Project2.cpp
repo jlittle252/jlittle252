@@ -319,7 +319,18 @@ int main() {
 
     } while (option != 'X');
     
-    cout << "Exiting ....." << endl;
-    cout << "* * * * * * * Goodbye * * * * * *" << endl;
+    cout<< "\n\n";
+    cout << "                 *                  " << endl;
+    cout << "                * *                 " << endl;
+    cout << "               * * *                " << endl;
+    cout << "              * * * *               " << endl;
+    cout<< "\n\n";
+    cout << "* * * * * * * Goodbye * * * * * * *" << endl;
+    cout<< "\n\n";
+    cout << "              * * * *               " << endl;
+    cout << "               * * *                " << endl;
+    cout << "                * *                 " << endl;
+    cout << "                 *                  " << endl;
+    return 0;
     return 0;
 }
