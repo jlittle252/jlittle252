@@ -177,7 +177,7 @@ void WelcomeMenu() {
 void UtaWelcome() {
     cout << "****************************************" << endl;
     cout << "         - UTA Menu -        " << endl;
-    cout << "       F) New UTA Enter" << endl;
+           
     cout << "       G) Enter Worked Hours" << endl;
     cout << "       H) View Months Payment" << endl;
     cout << "       I) View  9 Months Payment" << endl;
@@ -187,20 +187,20 @@ void UtaWelcome() {
 void MtaWelcome() {
     cout << "****************************************" << endl;
     cout << "         - MTA Menu -        " << endl;
-    cout << "       J) New MTA Enter" << endl;
-    cout << "       K) Enter Worked Hours" << endl;
-    cout << "       L) View Months Payment" << endl;
-    cout << "       M) View  9 Months Payment" << endl;
+    
+    cout << "       J) Enter Worked Hours" << endl;
+    cout << "       K) View Months Payment" << endl;
+    cout << "       L) View  9 Months Payment" << endl;
     cout << "       X) Exit" << endl;
     cout << "****************************************" << endl;
 }
 void PhdTarWelcome() {
     cout << "****************************************" << endl;
     cout << "         - PhDTAR  Menu - " << endl;
-    cout << "       A) New TAR Enter" << endl;
-    cout << "       B) Enter Worked Hours" << endl;
-    cout << "       C) View Months Payment" << endl;
-    cout << "       D) View  9 Months Payment" << endl;
+    
+    cout << "       A) Enter Worked Hours" << endl;
+    cout << "       B) View Months Payment" << endl;
+    cout << "       C) View  9 Months Payment" << endl;
     cout << "       X) Exit" << endl;
     cout << "****************************************" << endl;
 }
@@ -224,13 +224,9 @@ int main() {
                 cin >> subOption;
                 subOption = toupper(subOption);
         
-                if (subOption == 'F') {
-                    
+                if (subOption == 'G') {
                     cout << "\n++++++Enter User Details++++++\n"<< endl;
                     uta1.enterDetails();
-
-
-                } else if (subOption == 'G') {
                     
                 } else if(subOption == 'H'){
 
@@ -257,10 +253,14 @@ int main() {
                 subOption2 = toupper(subOption2);
                 
                 if (subOption2 == 'A') {
+                    cout << "\n++++++Enter User Details++++++\n"<< endl;
+                    uta1.enterDetails();
                     
-                } else if (subOption2 == 'B'||subOption2 == 'C'||subOption2 == 'D') {
-                    
-                } 
+                } else if (subOption2 == 'B'){ 
+                
+                } else if (subOption2 == 'C'){
+
+                }
             } while (subOption2 != 'X');
         } 
         
@@ -272,7 +272,13 @@ int main() {
                 cin >> subOption3;
                 subOption3 = toupper(subOption3);
 
-                if (subOption3 == 'J'||subOption3 =='K'||subOption3 =='L'||subOption3 =='M'){
+                if (subOption3 == 'J') {
+                    cout << "\n++++++Enter User Details++++++\n"<< endl;
+                    uta1.enterDetails();
+                    
+                } else if (subOption3 == 'K'){ 
+                
+                } else if (subOption3 == 'L'){
                     
                 }
 
