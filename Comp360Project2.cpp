@@ -216,6 +216,11 @@ int main() {
     char option;
     User uta1;
     UTA uta2;
+
+    MTA mta;
+    UTA* mtaPtr = &mta;
+    UTA* mtaPtr2 = &mta;
+
     PHDTAR phd;
     UTA* ptr1 = &phd;
     UTA* ptr2 = &phd;
@@ -239,20 +244,15 @@ int main() {
                     cout << "\n++++++Enter User Details++++++\n"<< endl;
                     uta1.enterDetails();
                     uta2.workDetails();
-                    
-                } else if(subOption == 'H'){
+                } 
+                else if(subOption == 'H'){
                     uta1.displayDetails();
                     uta2.calculateMonthlyPay();
 
-                } else if (subOption == 'I'){
+                } 
+                else if (subOption == 'I'){
                     uta1.displayDetails();
                     uta2.calculateNineMonthsPay();
-                    
-                    
-                
-                    
-
-
                 }
                 
             } while (subOption != 'X');
@@ -268,18 +268,16 @@ int main() {
                 subOption2 = toupper(subOption2);
                 
                 if (subOption2 == 'A') {
-                    cout << "\n++++++Enter User Details++++++\n"<< endl;
                     uta1.enterDetails();
                     ptr1->workDetails();
-                    
-                } else if (subOption2 == 'B'){ 
+                } 
+                else if (subOption2 == 'B'){ 
                     uta1.displayDetails();
                     ptr2->calculateMonthlyPay();
-                
-                } else if (subOption2 == 'C'){
+                } 
+                else if (subOption2 == 'C'){
                     uta1.displayDetails();
                     ptr2->calculateNineMonthsPay();
-
                 }
             } while (subOption2 != 'X');
         } 
@@ -293,15 +291,17 @@ int main() {
                 subOption3 = toupper(subOption3);
 
                 if (subOption3 == 'J') {
-                    cout << "\n++++++Enter User Details++++++\n"<< endl;
                     uta1.enterDetails();
-                    
-                } else if (subOption3 == 'K'){ 
-                
-                } else if (subOption3 == 'L'){
-                    
+                    mtaPtr->workDetails();
+                } 
+                else if (subOption3 == 'K'){ 
+                    uta1.displayDetails();
+                    mtaPtr2->calculateMonthlyPay();
+                } 
+                else if (subOption3 == 'L'){
+                    uta1.displayDetails();
+                    mtaPtr2->calculateNineMonthsPay();
                 }
-
             } while (subOption3!= 'X');
         }
 
