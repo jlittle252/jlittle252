@@ -168,9 +168,9 @@ void WelcomeMenu() {
     cout << "        Student Payment System       " << endl;
     cout << "            -Main Menu-              " << endl;
     cout << "\n\n";
-    cout << " U)  UTA Log In" << endl;
-    cout << " M)  MTA Log In" << endl;
-    cout << " I)  PhDTAR Log In" << endl;
+    cout << " U)  UTA Portal" << endl;
+    cout << " M)  MTA Portal" << endl;
+    cout << " I)  PhDTAR Portal" << endl;
     cout << " X)  Exit" << endl;
     cout << "==================================================" << endl;
 }
