@@ -56,9 +56,11 @@ class UTA {
             labHours = labHours;
         } 
         else {
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
             cout << "Worked hours cannot exceed 10." << endl;
             cout << "Please enter a valid number of worked hours." << endl;
             cin >> labHours;
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
     }
 
@@ -85,9 +87,11 @@ class MTA: public UTA{
             labHours = labHours;
         } 
         else {
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
             cout << "Worked Lab hours cannot exceed 10." << endl;
             cout << "Please enter a valid number of worked hours." << endl;
             cin >> labHours;
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
             cout << "Enter worked Lecture hours: ";
             cin >> lectureHours;
@@ -95,9 +99,11 @@ class MTA: public UTA{
             lectureHours = lectureHours;
         } 
         else {
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
             cout << "Worked Lecture hours cannot exceed 3." << endl;
             cout << "Please enter a valid number of worked lecture hours." << endl;
             cin >> lectureHours;
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
     }
     // Function to calculate monthly pay
@@ -126,9 +132,11 @@ class PHDTAR: public UTA{
             labHours = labHours;
         } 
         else {
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
             cout << "Worked Lab hours cannot exceed 10." << endl;
             cout << "Please enter a valid number of worked hours." << endl;
             cin >> labHours;
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
 
             cout << "Enter worked Lecture hours: ";
@@ -137,9 +145,11 @@ class PHDTAR: public UTA{
             lectureHours = lectureHours;
         } 
         else {
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
             cout << "Worked Lecture hours cannot exceed 3." << endl;
             cout << "Please enter a valid number of worked lecture hours." << endl;
             cin >> lectureHours;
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
         // Research hours
             cout << "Enter research hours: ";
@@ -149,9 +159,11 @@ class PHDTAR: public UTA{
 
         }
         else {
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
             cout << "Research hours cannot exceed 7." << endl;
             cout << "Please enter a valid number of research hours." << endl;
             cin >> researchHours;
+            cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
     }
 
@@ -170,13 +182,13 @@ class PHDTAR: public UTA{
 
 void WelcomeMenu() {
     cout << "*************************************************" << endl;
-    cout << "         Jianshe University          " << endl;
+    cout << "          Jianshe University          " << endl;
     cout << "        Student Payment System       " << endl;
     cout << "            -Main Menu-              " << endl;
     cout << "\n\n";
     cout << " U)  UTA Portal" << endl;
     cout << " M)  MTA Portal" << endl;
-    cout << " I)  PhDTAR Portal" << endl;
+    cout << " P)  PhDTAR Portal" << endl;
     cout << " X)  Exit" << endl;
     cout << "==================================================" << endl;
 }
@@ -259,7 +271,7 @@ int main() {
         
         }//option 
         
-        else if (option == 'I') {
+        else if (option == 'P') {
             char subOption2;
             do {
                 PhdTarWelcome();
@@ -307,6 +319,7 @@ int main() {
 
     } while (option != 'X');
     
-    cout << "Exiting ..." << endl;
+    cout << "Exiting ....." << endl;
+    cout << "* * * * * * * Goodbye * * * * * *" << endl;
     return 0;
 }
