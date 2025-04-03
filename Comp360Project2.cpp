@@ -44,22 +44,29 @@ class UTA {
 
     protected:
     int labHours;
-    int hourPay;
+    int hourPay = 20;
     int researchHours;
     int lectureHours;
 
     public:
     virtual void workDetails(){
-        cout << "Enter worked hours: ";
-        cin >> labHours;
+        if (labHours <= 10) {
+            cout << "Enter worked Lab hours: ";
+            cin >> labHours;
+        } 
+        else {
+            cout << "Worked hours cannot exceed 10." << endl;
+            cout << "Please enter a valid number of worked hours." << endl;
+            cin >> labHours;
+        }
     }
 
-    void calculateMonthlyPay() {
+    virtual void calculateMonthlyPay() {
         totalPayUTA = (labHours * hourPay);
         cout << "Total Monthly Pay: " << totalPayUTA << endl;
     }
 
-    void calculateNineMonthsPay() {
+    virtual void calculateNineMonthsPay() {
         int nineMonthsPay = totalPayUTA * 9;
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
@@ -70,12 +77,37 @@ class MTA: public UTA{
     int totalPayMTA;
 
     public:
-
     void workDetails() override{
-        cout << "Enter worked hours: ";
-        cin >> labHours;
-        cout << "Enter lecture hours: ";
-        cin >> lectureHours;
+        if (labHours <= 10) {
+            cout << "Enter worked Lab hours: ";
+            cin >> labHours;
+        } 
+        else {
+            cout << "Worked Lab hours cannot exceed 10." << endl;
+            cout << "Please enter a valid number of worked hours." << endl;
+            cin >> labHours;
+        }
+
+        if (lectureHours <= 3) {
+            cout << "Enter worked Lecture hours: ";
+            cin >> lectureHours;
+        } 
+        else {
+            cout << "Worked Lecture hours cannot exceed 3." << endl;
+            cout << "Please enter a valid number of worked lecture hours." << endl;
+            cin >> lectureHours;
+        }
+    }
+    // Function to calculate monthly pay
+    void calculateMonthlyPay() override {
+        totalPayMTA = (labHours * hourPay) + (lectureHours * hourPay);
+        cout << "Total Monthly Pay: " << totalPayMTA << endl;
+    }
+
+    // Function to calculate 9 months pay
+    void calculateNineMonthsPay() override {
+        int nineMonthsPay = totalPayMTA * 9;
+        cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
 };
@@ -86,12 +118,46 @@ class PHDTAR: public UTA{
 
     public:
     void workDetails() override{
-        cout << "Enter worked hours: ";
-        cin >> labHours;
-        cout << "Enter lecture hours: ";
-        cin >> lectureHours;
-        cout << "Enter research hours: ";
-        cin >> researchHours;
+        if (labHours <= 10) {
+            cout << "Enter worked lab hours: ";
+            cin >> labHours;
+        } 
+        else {
+            cout << "Worked Lab hours cannot exceed 10." << endl;
+            cout << "Please enter a valid number of worked hours." << endl;
+            cin >> labHours;
+        }
+
+        if (lectureHours <= 3) {
+            cout << "Enter worked lecture hours: ";
+            cin >> lectureHours;
+        } 
+        else {
+            cout << "Worked Lecture hours cannot exceed 3." << endl;
+            cout << "Please enter a valid number of worked lecture hours." << endl;
+            cin >> lectureHours;
+        }
+        // Research hours
+        if (researchHours <= 7) {
+            cout << "Enter research hours: ";
+            cin >> researchHours;
+        }
+        else {
+            cout << "Research hours cannot exceed 7." << endl;
+            cout << "Please enter a valid number of research hours." << endl;
+            cin >> researchHours;
+        }
+    }
+
+    // Function to calculate monthly pay
+    void calculateMonthlyPay() override {
+        totalPayPhDTAR = (labHours * hourPay) + (lectureHours * hourPay) + (researchHours * hourPay);
+        cout << "Total Monthly Pay: " << totalPayPhDTAR << endl;
+    }
+    // Function to calculate 9 months pay
+    void calculateNineMonthsPay() override {
+        int nineMonthsPay = totalPayPhDTAR * 9;
+        cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
 };
