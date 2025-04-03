@@ -50,9 +50,10 @@ class UTA {
 
     public:
     virtual void workDetails(){
-        if (labHours <= 10) {
             cout << "Enter worked Lab hours: ";
             cin >> labHours;
+        if (labHours <= 10) {
+            labHours = labHours;
         } 
         else {
             cout << "Worked hours cannot exceed 10." << endl;
@@ -78,19 +79,20 @@ class MTA: public UTA{
 
     public:
     void workDetails() override{
-        if (labHours <= 10) {
-            cout << "Enter worked Lab hours: ";
+        cout << "Enter worked Lab hours: ";
             cin >> labHours;
+        if (labHours <= 10) {
+            labHours = labHours;
         } 
         else {
             cout << "Worked Lab hours cannot exceed 10." << endl;
             cout << "Please enter a valid number of worked hours." << endl;
             cin >> labHours;
         }
-
-        if (lectureHours <= 3) {
             cout << "Enter worked Lecture hours: ";
             cin >> lectureHours;
+        if (lectureHours <= 3) {
+            lectureHours = lectureHours;
         } 
         else {
             cout << "Worked Lecture hours cannot exceed 3." << endl;
@@ -118,9 +120,10 @@ class PHDTAR: public UTA{
 
     public:
     void workDetails() override{
-        if (labHours <= 10) {
-            cout << "Enter worked lab hours: ";
+            cout << "Enter worked Lab hours: ";
             cin >> labHours;
+        if (labHours <= 10) {
+            labHours = labHours;
         } 
         else {
             cout << "Worked Lab hours cannot exceed 10." << endl;
@@ -128,9 +131,10 @@ class PHDTAR: public UTA{
             cin >> labHours;
         }
 
-        if (lectureHours <= 3) {
-            cout << "Enter worked lecture hours: ";
+            cout << "Enter worked Lecture hours: ";
             cin >> lectureHours;
+        if (lectureHours <= 3) {
+            lectureHours = lectureHours;
         } 
         else {
             cout << "Worked Lecture hours cannot exceed 3." << endl;
@@ -138,6 +142,8 @@ class PHDTAR: public UTA{
             cin >> lectureHours;
         }
         // Research hours
+            cout << "Enter research hours: ";
+            cin >> researchHours;
         if (researchHours <= 7) {
             cout << "Enter research hours: ";
             cin >> researchHours;
@@ -209,6 +215,7 @@ void PhdTarWelcome() {
 int main() {
     char option;
     User uta1;
+    UTA uta2;
     do {
         WelcomeMenu();
         cout << "Enter Main Menu Option: ";
@@ -227,14 +234,16 @@ int main() {
                 if (subOption == 'G') {
                     cout << "\n++++++Enter User Details++++++\n"<< endl;
                     uta1.enterDetails();
+                    uta2.workDetails();
                     
                 } else if(subOption == 'H'){
+                    uta2.calculateMonthlyPay();
 
                 } else if (subOption == 'I'){
+                    uta2.calculateNineMonthsPay();
                     
                     
-                    cout << "\nDisplaying User Details:\n";
-                    uta1.displayDetails();
+                
                     
 
 
