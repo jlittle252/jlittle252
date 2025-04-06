@@ -74,7 +74,7 @@ class UTA {
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
-    void calulateMonthlyPay(int weeks){
+    void calculateMonthlyPay(int weeks){
         int totalWeeksPay;
         totalWeeksPay = (labHours * hourPay) * weeks;
         cout << "Total pay for " << weeks << " weeks: " << totalWeeksPay << endl;
@@ -124,7 +124,7 @@ class MTA: public UTA{
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
-    void calulateMonthlyPay(int weeks){
+    void calculateMonthlyPay(int weeks){
         int totalWeeksPay;
         totalWeeksPay = ((labHours * hourPay) + (lectureHours * hourPay)) * weeks;
         cout << "Total pay for " << weeks << " weeks: " << totalWeeksPay << endl;
@@ -190,7 +190,7 @@ class PHDTAR: public UTA{
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
-    void calulateMonthlyPay(int weeks){
+    void calculateMonthlyPay(int weeks){
         int totalWeeksPay;
         totalWeeksPay = ((labHours * hourPay) + (lectureHours * hourPay) + (researchHours * hourPay)) * weeks;
         cout << "Total pay for " << weeks << " weeks: " << totalWeeksPay << endl;
@@ -291,7 +291,7 @@ int main() {
                     cout << "Enter number of weeks: ";
                     cin >> weeks;
                     uta1.displayDetails();
-                    uta2.calulateMonthlyPay(weeks);
+                    uta2.calculateMonthlyPay(weeks);
                 }
                 
             } while (subOption != 'X');
@@ -323,7 +323,7 @@ int main() {
                     cout << "Enter number of weeks: ";
                     cin >> weeks;
                     uta1.displayDetails();
-                    uta2.calulateMonthlyPay(weeks);
+                    uta2.calculateMonthlyPay(weeks);
                 }
             } while (subOption2 != 'X');
         } 
@@ -353,7 +353,7 @@ int main() {
                     cout << "Enter number of weeks: ";
                     cin >> weeks;
                     uta1.displayDetails();
-                    uta2.calulateMonthlyPay(weeks);
+                    uta2.calculateMonthlyPay(weeks);
                 }
             } while (subOption3!= 'X');
         }
