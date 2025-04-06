@@ -1,7 +1,5 @@
-// Jonathan Little, Ethen Blalock
-// April 6, 2025
-// COMP 360
-// Project 2, Student Payment System. 
+
+ 
 // This program is a student payment system that allows users to enter their details and calculate their monthly and 9-month pay based on their work hours.
 
 #include <iostream>
