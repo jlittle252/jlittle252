@@ -1,3 +1,9 @@
+// Jonathan Little, Ethen Blalock
+// April 6, 2025
+// COMP 360
+// Project 2, Student Payment System. 
+// This program is a student payment system that allows users to enter their details and calculate their monthly and 9-month pay based on their work hours.
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -30,7 +36,7 @@ class User {
     
         // Function to display user details
         void displayDetails() const {
-            cout << "\nUser Information:\n";
+            cout << "\n \n";
             cout << "First Name: " << firstName << endl;
             cout << "Last Name: " << lastName << endl;
             cout << "ID: " << id << endl;
@@ -50,15 +56,15 @@ class UTA {
 
     public:
     virtual void workDetails(){
-            cout << "Enter worked Lab hours: ";
+            cout << "Enter Lab hours: ";
             cin >> labHours;
         if (labHours <= 10) {
             labHours = labHours;
         } 
         else {
             cout << "* * * * * * * ************************ * * * * * * *" << endl;
-            cout << "Worked hours cannot exceed 10." << endl;
-            cout << "Please enter a valid number of worked hours." << endl;
+            cout << "Lab hours cannot exceed 10." << endl;
+            cout << "Please enter a valid number of worked Lab hours." << endl;
             cin >> labHours;
             cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
@@ -74,7 +80,7 @@ class UTA {
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
-    void calculateMonthlyPay(int weeks){
+    void calulateMonthlyPay(int weeks){
         int totalWeeksPay;
         totalWeeksPay = (labHours * hourPay) * weeks;
         cout << "Total pay for " << weeks << " weeks: " << totalWeeksPay << endl;
@@ -87,19 +93,19 @@ class MTA: public UTA{
 
     public:
     void workDetails() override{
-        cout << "Enter worked Lab hours: ";
+        cout << "Enter Lab hours: ";
             cin >> labHours;
         if (labHours <= 10) {
             labHours = labHours;
         } 
         else {
             cout << "* * * * * * * ************************ * * * * * * *" << endl;
-            cout << "Worked Lab hours cannot exceed 10." << endl;
-            cout << "Please enter a valid number of worked hours." << endl;
+            cout << "Lab hours cannot exceed 10." << endl;
+            cout << "Please enter a valid number of worked Lab hours." << endl;
             cin >> labHours;
             cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
-            cout << "Enter worked Lecture hours: ";
+            cout << "Enter Lecture hours:  ";
             cin >> lectureHours;
         if (lectureHours <= 3) {
             lectureHours = lectureHours;
@@ -124,7 +130,7 @@ class MTA: public UTA{
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
-    void calculateMonthlyPay(int weeks){
+    void calulateMonthlyPay(int weeks){
         int totalWeeksPay;
         totalWeeksPay = ((labHours * hourPay) + (lectureHours * hourPay)) * weeks;
         cout << "Total pay for " << weeks << " weeks: " << totalWeeksPay << endl;
@@ -138,20 +144,20 @@ class PHDTAR: public UTA{
 
     public:
     void workDetails() override{
-            cout << "Enter worked Lab hours: ";
+            cout << "Enter Lab hours :  ";
             cin >> labHours;
         if (labHours <= 10) {
             labHours = labHours;
         } 
         else {
             cout << "* * * * * * * ************************ * * * * * * *" << endl;
-            cout << "Worked Lab hours cannot exceed 10." << endl;
-            cout << "Please enter a valid number of worked hours." << endl;
+            cout << "Lab hours cannot exceed 10." << endl;
+            cout << "Please enter a valid number of worked Lab hours." << endl;
             cin >> labHours;
             cout << "* * * * * * * ************************ * * * * * * *" << endl;
         }
 
-            cout << "Enter worked Lecture hours: ";
+            cout << "Enter Lecture hours: ";
             cin >> lectureHours;
         if (lectureHours <= 3) {
             lectureHours = lectureHours;
@@ -190,7 +196,7 @@ class PHDTAR: public UTA{
         cout << "Total Pay for 9 Months: " << nineMonthsPay << endl;
     }
 
-    void calculateMonthlyPay(int weeks){
+    void calulateMonthlyPay(int weeks){
         int totalWeeksPay;
         totalWeeksPay = ((labHours * hourPay) + (lectureHours * hourPay) + (researchHours * hourPay)) * weeks;
         cout << "Total pay for " << weeks << " weeks: " << totalWeeksPay << endl;
@@ -248,11 +254,12 @@ int main() {
     char option;
     User uta1;
     UTA uta2;
-
     MTA mta;
+
+    // pointers for MTA and PHDTAR CLasses
+    // MTA and PHDTAR are derived from UTA
     UTA* mtaPtr = &mta;
     UTA* mtaPtr2 = &mta;
-
     PHDTAR phd;
     UTA* ptr1 = &phd;
     UTA* ptr2 = &phd;
@@ -263,7 +270,7 @@ int main() {
         cin >> option;
         option = toupper(option);
         
-        if (option == 'U') {
+        if (option == 'U') {//UTA portal
             char subOption;
             
             do {
@@ -271,64 +278,73 @@ int main() {
                 cout << "Enter UTA Menu Option: ";
                 cin >> subOption;
                 subOption = toupper(subOption);
-        
+                // Enter worked Hours(this will also prompt for user info i.e Name, Address, ID)
                 if (subOption == 'G') {
-                    cout << "\n++++++Enter User Details++++++\n"<< endl;
+                    cout << "\n++++++Enter UTA User Details++++++\n"<< endl;
                     uta1.enterDetails();
                     uta2.workDetails();
-                } 
+                }
+                // View Monthly Payment 
                 else if(subOption == 'H'){
                     uta1.displayDetails();
                     uta2.calculateMonthlyPay();
 
                 } 
-                else if (subOption == 'I'){
+                //View Months Payment
+                else if (subOption == 'I'){ 
                     uta1.displayDetails();
                     uta2.calculateNineMonthsPay();
                 }
+                // Option to allow user to calculate pay for any chosen number of weeks
                 else if (subOption == 'J'){
                     int weeks;
                     cout << "Enter number of weeks: ";
                     cin >> weeks;
                     uta1.displayDetails();
-                    uta2.calculateMonthlyPay(weeks);
+                    uta2.calulateMonthlyPay(weeks);
                 }
                 
-            } while (subOption != 'X');
+            } while (subOption != 'X'); // Exit UTA portal
         
-        }//option 
+        }
         
-        else if (option == 'P') {
+        else if (option == 'P') { //PHDTAR Portal
             char subOption2;
+            
             do {
                 PhdTarWelcome();
                 cout << "Enter PhdTar Menu Option: ";
                 cin >> subOption2;
                 subOption2 = toupper(subOption2);
                 
+                // Enter worked Hours(this will also prompt for user info i.e Name, Address, ID)
                 if (subOption2 == 'A') {
+                    cout << "\n++++++PhdTar User Details++++++\n"<< endl;
                     uta1.enterDetails();
                     ptr1->workDetails();
                 } 
+                // View Monthly Payment
                 else if (subOption2 == 'B'){ 
                     uta1.displayDetails();
                     ptr2->calculateMonthlyPay();
                 } 
+                //View Nine Months Payment
                 else if (subOption2 == 'C'){
                     uta1.displayDetails();
                     ptr2->calculateNineMonthsPay();
                 }
+                 // Option to allow user to calculate pay for any chosen number of weeks
                 else if (subOption2 == 'D'){
                     int weeks;
                     cout << "Enter number of weeks: ";
                     cin >> weeks;
                     uta1.displayDetails();
-                    uta2.calculateMonthlyPay(weeks);
+                    uta2.calulateMonthlyPay(weeks);
                 }
-            } while (subOption2 != 'X');
+            } while (subOption2 != 'X'); // Exit PHDTAR Portal
         } 
         
-        else if (option == 'M') {
+        else if (option == 'M') { //MTA Portal
             char subOption3;
             do {
                 MtaWelcome();
@@ -336,29 +352,34 @@ int main() {
                 cin >> subOption3;
                 subOption3 = toupper(subOption3);
 
+                // Enter worked Hours(this will also prompt for user info i.e Name, Address, ID)
                 if (subOption3 == 'J') {
+                    cout << "\n++++++Enter MTA User Details++++++\n"<< endl;
                     uta1.enterDetails();
                     mtaPtr->workDetails();
                 } 
+                //View Monthly Payment
                 else if (subOption3 == 'K'){ 
                     uta1.displayDetails();
                     mtaPtr2->calculateMonthlyPay();
                 } 
+                // View Nine Months Payment
                 else if (subOption3 == 'L'){
                     uta1.displayDetails();
                     mtaPtr2->calculateNineMonthsPay();
                 }
+                // Option to allow user to calculate pay for any chosen number of weeks
                 else if (subOption3 == 'M'){
                     int weeks;
                     cout << "Enter number of weeks: ";
                     cin >> weeks;
                     uta1.displayDetails();
-                    uta2.calculateMonthlyPay(weeks);
+                    uta2.calulateMonthlyPay(weeks);
                 }
-            } while (subOption3!= 'X');
+            } while (subOption3!= 'X'); //Exit MTA portal
         }
 
-    } while (option != 'X');
+    } while (option != 'X'); // Exit Main Menu
     
     cout<< "\n\n";
     cout << "                 *                  " << endl;
@@ -374,4 +395,4 @@ int main() {
     cout << "                 *                  " << endl;
     return 0;
     return 0;
-}
+}// end of code
