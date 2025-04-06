@@ -1,6 +1,4 @@
-// Jonathan Little, Ethen Blalock
-// February 21st, 2025
-// COMP 360
+
 // Project 1, Lexical Analyzer and Recursive Decent Parser
 
 #include <iostream>
