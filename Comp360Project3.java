@@ -3,11 +3,12 @@ package example360;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-class ClassFullException extends Exception {
+class ClassRoomFull extends Exception {
     private LocalDate registrationDate;
 
-    public ClassFullException(LocalDate registrationDate) {
+    public ClassRoomFull(LocalDate registrationDate) {
         super(" ** Class Full **  Registration Attempt Date:  " + registrationDate);
         this.registrationDate = registrationDate;
     }
@@ -53,7 +54,7 @@ class Student {
 }
 
 class Comp360RegistrationSystem {
-    private static final int MAX_SEATS = 30;
+    private static final int MAX_SEATS = 3;
     private List<Student> registeredStudents;
 
     public Comp360RegistrationSystem() {
@@ -64,10 +65,10 @@ class Comp360RegistrationSystem {
         return registeredStudents.size() >= MAX_SEATS;
     }
 
-    public void registerStudent(String name) throws ClassFullException {
+    public void registerStudent(String name) throws ClassRoomFull {
         LocalDate registrationDate = LocalDate.now();
         if (isClassRoomFull()) {
-            throw new ClassFullException(registrationDate);
+            throw new ClassRoomFull(registrationDate);
         }
         int seatNumber = registeredStudents.size() + 1;
         Student student = new Student(name, seatNumber, registrationDate);
@@ -86,24 +87,63 @@ class Comp360RegistrationSystem {
             System.out.println(student);
         }
     }
-
     public static void main(String[] args) {
-        Comp360RegistrationSystem registrationSystem = new Comp360RegistrationSystem();
-
-        try {
-            registrationSystem.registerStudent("Alice");
-            registrationSystem.registerStudent("Bob");
-            registrationSystem.registerStudent("Charlie");
-            // Attempt to register more students to test the ClassFullException
-            for (int i = 4; i <= 31; i++) {
-                registrationSystem.registerStudent("Student" + i);
-            }
-        } catch (ClassFullException e) {
-            System.err.println(e.getMessage());
-        }
-
-        registrationSystem.displayRegisteredStudents();
-        registrationSystem.cancelRegistration(2);
-        registrationSystem.displayRegisteredStudents();
+    	Comp360RegistrationSystem registrationSystem = new Comp360RegistrationSystem();
+    	Scanner inPut = new Scanner(System.in);
+    	String choice;
+    	
+    	do {
+    		System.out.println("Menu Options");
+    		System.out.println("A - New Student Registration");
+    		System.out.println("B - Cancel Student Registration");
+    		System.out.println("C - Exit");
+    		choice = inPut.nextLine().toUpperCase();
+    		System.out.println(" ");
+    		
+    		
+    		
+    		switch (choice)
+    		{
+    		
+    		case "A":
+    	    	try {
+    	    		
+    	    		System.out.println("Enter Student Name");
+    	    		String newStudent = inPut.nextLine();
+    	    		registrationSystem.registerStudent(newStudent);
+    	    		System.out.println(" ");
+    	    		}
+    	    	
+    	    	
+    	    	catch (ClassRoomFull e) {
+    	    		System.err.println(e.getMessage());
+    	    		}
+    	    	
+    	    	
+    			break;
+    		case "B": 
+                
+                break;
+            case "C": 
+                // .. exit program
+                break;
+            default:
+                System.out.println("Pick Valid Option");
+        }   
+    } while (choice != "C");
+    	
+    	inPut.close();
+    	
     }
 }
+    		
+   	
+
+    	
+    
+
+    
+    
+
+   
+
