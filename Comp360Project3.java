@@ -63,7 +63,7 @@ class Student {
 }
 
 class Comp360RegistrationSystem {
-    private static final int MAX_SEATS = 3;
+    private static final int MAX_SEATS = 30;
     private List<Student> registeredStudents;
 
     public Comp360RegistrationSystem() {
