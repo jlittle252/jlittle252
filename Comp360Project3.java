@@ -1,4 +1,13 @@
-package example360;
+/*
+
+ Project 3
+ Student registration program designed to take user input that will allow them to register for a class, 
+ cancel their registration, view all registered students, and view remaining class seats. 
+*/
+
+
+
+package project360;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,7 +48,7 @@ class Student {
 
     @Override
     public String toString() {
-        return "  Registration Date: " + registrationDate + ", Seat Number: " + seatNumber ;
+        return " Student Name: " + name + ",  Registration Date: " + registrationDate + ", Seat Number: " + seatNumber ;
     }
 
 	public String getName() {
@@ -73,30 +82,37 @@ class Comp360RegistrationSystem {
         int seatNumber = registeredStudents.size() + 1;
         Student student = new Student(name, seatNumber, registrationDate);
         registeredStudents.add(student);
-        System.out.println(name + " Successfully Registered: " + student);
+        System.out.println( " * * * * Successfully Registered* * * * " );
+        System.out.println(student);
     }
 
-    public void cancelRegistration(int seatNumber) {
-        registeredStudents.removeIf(student -> student.getSeatNumber() == seatNumber);
-        System.out.println("Registration Cancelled for Seat Number: " + seatNumber);
+    public void cancelRegistration(String name) {
+        registeredStudents.removeIf(student -> student.getName().equals(name));
+        System.out.println(" ");
+        System.out.println("Registration Cancelled for : " + name);
+        System.out.print(" ");
     }
 
     public void displayRegisteredStudents() {
         System.out.println("Registered Students:");
-        for (Student student : registeredStudents) {
-            System.out.println(student);
-        }
+        System.out.println(registeredStudents);
+        
+        
     }
     public static void main(String[] args) {
     	Comp360RegistrationSystem registrationSystem = new Comp360RegistrationSystem();
     	Scanner inPut = new Scanner(System.in);
     	String choice;
+    	int seatNum;
     	
     	do {
+    		System.out.print(" ");
     		System.out.println("Menu Options");
     		System.out.println("A - New Student Registration");
     		System.out.println("B - Cancel Student Registration");
-    		System.out.println("C - Exit");
+    		System.out.println("C - View Registered Students");
+    		System.out.println("D - View Remaining Seats");
+    		System.out.println("X - Exit ");
     		choice = inPut.nextLine().toUpperCase();
     		System.out.println(" ");
     		
@@ -110,7 +126,7 @@ class Comp360RegistrationSystem {
     	    		
     	    		System.out.println("Enter Student Name");
     	    		String newStudent = inPut.nextLine();
-    	    		registrationSystem.registerStudent(newStudent);
+    	    		registrationSystem.registerStudent(newStudent.toUpperCase());
     	    		System.out.println(" ");
     	    		}
     	    	
@@ -121,22 +137,48 @@ class Comp360RegistrationSystem {
     	    	
     	    	
     			break;
-    		case "B": 
+    		case "B":
+    			
+    			System.out.println("Enter Student to Cancel");
+    			
+    			
+	    		String stuName = inPut.nextLine();
+    			
+    			registrationSystem.cancelRegistration(stuName.toUpperCase());
+    			
                 
                 break;
-            case "C": 
+            
+    		case "C": 
+            	
+            	System.out.println(" ");
+            	registrationSystem.displayRegisteredStudents();
+            	System.out.println(" ");
+                break;
+                
+    		case "D":
+    			System.out.println(" Comp 360 Remaining Seats ");
+    			System.out.println("--> " + MAX_SEATS + " <--");
+    			
+                break;
+                
+            case "X": 
+            	
+            	System.out.println("Good Bye");
                 // .. exit program
                 break;
+            
             default:
                 System.out.println("Pick Valid Option");
         }   
-    } while (choice != "C");
+    } while (choice != "X");
     	
     	inPut.close();
     	
     }
 }
     		
+// End of code
    	
 
     	
@@ -145,5 +187,4 @@ class Comp360RegistrationSystem {
     
     
 
-   
 
