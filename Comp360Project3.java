@@ -64,7 +64,7 @@ class Student {
 
 class Comp360RegistrationSystem {
     private static final int MAX_SEATS = 30;
-    private List<Student> registeredStudents;
+    private static List<Student> registeredStudents;
 
     public Comp360RegistrationSystem() {
         registeredStudents = new ArrayList<>();
@@ -157,8 +157,9 @@ class Comp360RegistrationSystem {
                 break;
                 
     		case "D":
+			int seatsRemain = MAX_SEATS - registeredStudents.size();	
     			System.out.println(" Comp 360 Remaining Seats ");
-    			System.out.println("--> " + MAX_SEATS + " <--");
+    			System.out.println("--> " + seatsRemain + " <--");
     			
                 break;
                 
