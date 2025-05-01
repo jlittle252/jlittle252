@@ -5,15 +5,15 @@
  cancel their registration, view all registered students, and view remaining class seats. 
 */
 
+package registration;
 
-
-package project360;
-
+import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+// Custom exception
 class ClassRoomFull extends Exception {
     private LocalDate registrationDate;
 
@@ -27,13 +27,14 @@ class ClassRoomFull extends Exception {
     }
 }
 
+// Student model
 class Student {
     private String name;
     private int seatNumber;
     private LocalDate registrationDate;
 
     public Student(String name, int seatNumber, LocalDate registrationDate) {
-        this.setName(name);
+        this.name = name;
         this.seatNumber = seatNumber;
         this.registrationDate = registrationDate;
     }
@@ -46,25 +47,21 @@ class Student {
         return registrationDate;
     }
 
-    @Override
-    public String toString() {
-        return " Student Name: " + name + ",  Registration Date: " + registrationDate + ", Seat Number: " + seatNumber ;
+    public String getName() {
+        return name;
     }
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-    
-    
+    @Override
+    public String toString() {
+        return "Student Name: " + name + ", Registration Date: " + registrationDate + ", Seat Number: " + seatNumber;
+    }
 }
 
-class Comp360RegistrationSystem {
+// Main registration system with GUI
+public class Comp360RegistrationSystem {
+
     private static final int MAX_SEATS = 30;
-    private static List<Student> registeredStudents;
+    private List<Student> registeredStudents;
 
     public Comp360RegistrationSystem() {
         registeredStudents = new ArrayList<>();
@@ -82,110 +79,88 @@ class Comp360RegistrationSystem {
         int seatNumber = registeredStudents.size() + 1;
         Student student = new Student(name, seatNumber, registrationDate);
         registeredStudents.add(student);
-        System.out.println( " * * * * Successfully Registered* * * * " );
+        System.out.println(" * * * * Successfully Registered * * * * ");
         System.out.println(student);
     }
 
     public void cancelRegistration(String name) {
         registeredStudents.removeIf(student -> student.getName().equals(name));
-        System.out.println(" ");
-        System.out.println("Registration Cancelled for : " + name);
-        System.out.print(" ");
+        System.out.println("Registration Cancelled for: " + name);
     }
 
-    public void displayRegisteredStudents() {
-        System.out.println("Registered Students:");
-        System.out.println(registeredStudents);
-        
-        
+    public List<Student> getRegisteredStudents() {
+        return new ArrayList<>(registeredStudents); // Defensive copy
     }
+
+    public int getRemainingSeats() {
+        return MAX_SEATS - registeredStudents.size();
+    }
+
+    // GUI launcher
     public static void main(String[] args) {
-    	Comp360RegistrationSystem registrationSystem = new Comp360RegistrationSystem();
-    	Scanner inPut = new Scanner(System.in);
-    	String choice;
-    	int seatNum;
-    	
-    	do {
-    		System.out.print(" ");
-    		System.out.println("Menu Options");
-    		System.out.println("A - New Student Registration");
-    		System.out.println("B - Cancel Student Registration");
-    		System.out.println("C - View Registered Students");
-    		System.out.println("D - View Remaining Seats");
-    		System.out.println("X - Exit ");
-    		choice = inPut.nextLine().toUpperCase();
-    		System.out.println(" ");
-    		
-    		
-    		
-    		switch (choice)
-    		{
-    		
-    		case "A":
-    	    	try {
-    	    		
-    	    		System.out.println("Enter Student Name");
-    	    		String newStudent = inPut.nextLine();
-    	    		registrationSystem.registerStudent(newStudent.toUpperCase());
-    	    		System.out.println(" ");
-    	    		}
-    	    	
-    	    	
-    	    	catch (ClassRoomFull e) {
-    	    		System.err.println(e.getMessage());
-    	    		}
-    	    	
-    	    	
-    			break;
-    		case "B":
-    			
-    			System.out.println("Enter Student to Cancel");
-    			
-    			
-	    		String stuName = inPut.nextLine();
-    			
-    			registrationSystem.cancelRegistration(stuName.toUpperCase());
-    			
-                
-                break;
-            
-    		case "C": 
-            	
-            	System.out.println(" ");
-            	registrationSystem.displayRegisteredStudents();
-            	System.out.println(" ");
-                break;
-                
-    		case "D":
-			int seatsRemain = MAX_SEATS - registeredStudents.size();	
-    			System.out.println(" Comp 360 Remaining Seats ");
-    			System.out.println("--> " + seatsRemain + " <--");
-    			
-                break;
-                
-            case "X": 
-            	
-            	System.out.println("Good Bye");
-                // .. exit program
-                break;
-            
-            default:
-                System.out.println("Pick Valid Option");
-        }   
-    } while (choice != "X");
-    	
-    	inPut.close();
-    	
+        Comp360RegistrationSystem registrationSystem = new Comp360RegistrationSystem();
+
+        JFrame frame = new JFrame("COMP 360 Registration System");
+        frame.setSize(600, 450);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(7, 1));
+
+        JTextField nameField = new JTextField();
+        JTextArea displayArea = new JTextArea();
+        displayArea.setEditable(false);
+
+        // Register Button
+        JButton registerBtn = new JButton("Register Student");
+        registerBtn.addActionListener(e -> {
+            String name = nameField.getText().trim().toUpperCase();
+            try {
+                registrationSystem.registerStudent(name);
+                displayArea.setText("Successfully registered: " + name);
+            } catch (ClassRoomFull ex) {
+                displayArea.setText(ex.getMessage());
+            }
+        });
+
+        // Cancel Button
+        JButton cancelBtn = new JButton("Cancel Registration");
+        cancelBtn.addActionListener(e -> {
+            String name = nameField.getText().trim().toUpperCase();
+            registrationSystem.cancelRegistration(name);
+            displayArea.setText("Cancelled registration for: " + name);
+        });
+
+        // View Students
+        JButton viewBtn = new JButton("View Registered Students");
+        viewBtn.addActionListener(e -> {
+            List<Student> students = registrationSystem.getRegisteredStudents();
+            if (students.isEmpty()) {
+                displayArea.setText("No students registered.");
+            } else {
+                StringBuilder sb = new StringBuilder();
+                for (Student s : students) {
+                    sb.append(s).append("\n");
+                }
+                displayArea.setText(sb.toString());
+            }
+        });
+
+        // View Remaining Seats
+        JButton seatsBtn = new JButton("View Remaining Seats");
+        seatsBtn.addActionListener(e -> {
+            int remaining = registrationSystem.getRemainingSeats();
+            displayArea.setText("Remaining Seats: " + remaining);
+        });
+
+        // Add components
+        frame.add(new JLabel("Enter Student Name:"));
+        frame.add(nameField);
+        frame.add(registerBtn);
+        frame.add(cancelBtn);
+        frame.add(viewBtn);
+        frame.add(seatsBtn);
+        frame.add(new JScrollPane(displayArea));
+
+        frame.setVisible(true);
     }
 }
-    		
-// End of code
-   	
-
-    	
-    
-
-    
-    
-
-
+// End of Code
